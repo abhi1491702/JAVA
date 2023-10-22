@@ -1,0 +1,35 @@
+public class PangramChecker {
+    public static void main(String[] args) {
+        java.util.Scanner scanner = new java.util.Scanner(System.in);
+        System.out.print("Enter a sentence: ");
+        String input = scanner.nextLine().toLowerCase();
+        boolean isPangram = checkPangram(input);
+        if (isPangram) {
+            System.out.println("The input is a pangram.");
+        } else {
+            System.out.println("The input is not a pangram.");
+        }
+    }
+
+    public static boolean checkPangram(String input) {
+        // Create an array to mark the presence of each alphabet from 'a' to 'z'
+        boolean[] alphabetPresent = new boolean[26];
+
+        // Iterate through the input string
+        for (char c : input.toCharArray()) {
+            if (Character.isLetter(c)) {
+                int index = c - 'a'; // Calculate the index for the current character
+                alphabetPresent[index] = true;
+            }
+        }
+
+        // Check if all alphabet letters from 'a' to 'z' are present
+        for (boolean isPresent : alphabetPresent) {
+            if (!isPresent) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+}
